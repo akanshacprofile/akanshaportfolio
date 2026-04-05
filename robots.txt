@@ -1,0 +1,12 @@
+# Akansha Chauhan Portfolio
+# Allow search engines to index the site
+
+User-agent: *
+Allow: /
+
+# Block common bot paths (not applicable but good practice)
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap (update domain when deployed)
+# Sitemap: https://yourdomain.com/sitemap.xml
