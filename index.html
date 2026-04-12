@@ -36,7 +36,7 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; overflow-x: hidden; }
 
 /* Metallic gold shimmer effect */
 .gold-shimmer {
@@ -885,22 +885,88 @@ footer a:hover { color: var(--accent); }
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .projects-grid, .testimonial-track, .edu-grid { grid-template-columns: 1fr 1fr; }
-  .about-grid { grid-template-columns: 1fr; text-align: center; }
+  .about-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+  .newsletter-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .hub-container { flex-direction: column; height: auto; gap: 1.5rem; padding: 1rem 0; }
+  .hub-left, .hub-right { width: 100%; }
+  .hub-center { margin: 0; }
 }
 @media (max-width: 768px) {
-  section { padding: 4rem 1.25rem; }
-  .nav-links { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(12,26,51,0.97); flex-direction: column; padding: 1rem; border-bottom: 1px solid var(--border); }
+  html { scroll-padding-top: 70px; }
+  nav { height: auto; }
+  .nav-inner { height: 60px; padding: 0 1rem; }
+  .nav-logo svg { width: 150px; height: 38px; }
+  section { padding: 3rem 1rem; }
+  .container { padding: 0; }
+  .nav-links { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(12,26,51,0.98); flex-direction: column; padding: 1rem; border-bottom: 1px solid var(--border); max-height: calc(100vh - 60px); overflow-y: auto; }
   .nav-links.open { display: flex; }
-  .menu-toggle { display: block; }
+  .nav-links a { padding: 0.75rem 1rem; }
+  .menu-toggle { display: block; font-size: 1.5rem; }
   .projects-grid, .skills-grid, .testimonial-track, .contact-grid, .edu-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .contact-grid { gap: 2.5rem; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { gap: 2rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .stat-card { padding: 1.25rem 1rem; }
+  .stat-number { font-size: 1.8rem; }
+  .hero { min-height: auto; padding: 5rem 1rem 3rem; }
   .hero h1 { font-size: 2.5rem; }
+  .hero-subtitle { font-size: 0.95rem; }
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .section-title { font-size: 1.75rem; }
+  .section-desc { font-size: 0.92rem; }
+  .about-photo { width: 180px; height: 180px; }
+  .about-bio { font-size: 0.95rem; }
+  .industries-row { justify-content: center; }
+  /* Roadmap mobile - single column, all cards on right */
+  .roadmap { padding-left: 0; }
+  .rm-node { grid-template-columns: 44px 1fr; gap: 1rem; margin-bottom: 2rem; }
+  .rm-left { display: none !important; }
+  .rm-right { visibility: visible !important; }
+  .rm-right .rm-card, .rm-left .rm-card { display: block !important; }
+  .roadmap-line { left: 22px !important; right: auto !important; }
+  .rm-card { max-width: 100%; padding: 1.25rem; }
+  .rm-dot-col { order: 1; }
+  /* Carousel */
+  .carousel-wrapper { height: auto; min-height: 380px; padding: 1rem 0; }
+  .testimonial-card { width: 85vw; max-width: 320px; padding: 1.5rem; }
+  .testimonial-card.prev, .testimonial-card.next, .testimonial-card.far-prev, .testimonial-card.far-next { opacity: 0; pointer-events: none; }
+  /* Skills, certs, edu */
+  .skill-group, .cert-card, .edu-card { padding: 1.25rem; }
+  .skill-tag { font-size: 0.75rem; padding: 0.3rem 0.65rem; }
+  .certs-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  /* Newsletter */
+  .nl-post { padding: 1.25rem; }
+  .nl-form { flex-direction: column; }
+  .nl-form button { width: 100%; }
+  /* Contact form */
+  .contact-form { padding: 0; }
+  .form-group input, .form-group textarea { font-size: 16px; /* prevents iOS zoom */ }
+  /* Hub pills */
+  .hub-tool, .hub-skill { font-size: 0.72rem; padding: 0.35rem 0.75rem; }
+  .hub-outcome { width: 160px; min-width: 160px; padding: 0.85rem; }
+  /* Mastery quote */
+  .mastery-quote { padding: 2rem 1rem 1.5rem; }
+  .mq-body { font-size: 1rem; line-height: 1.7; }
+  .mq-next { font-size: 1.4rem; }
+  .mq-mark-open, .mq-mark-close { font-size: 3.5rem; }
+  /* Footer */
+  footer { padding: 1.5rem 1rem; font-size: 0.75rem; }
 }
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: 1fr; }
-  .hero { padding: 5rem 1rem 3rem; }
+  .hero { padding: 4rem 1rem 2.5rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero-tag { font-size: 0.65rem; padding: 0.35rem 0.8rem; }
+  .section-title { font-size: 1.5rem; }
+  .nav-logo svg { width: 130px; height: 34px; }
+  .about-photo { width: 150px; height: 150px; }
+  .tl-header { flex-direction: column; gap: 0.25rem; align-items: flex-start; }
+  .testimonial-card { width: 90vw; padding: 1.25rem; }
+  .tq-text { font-size: 0.85rem; }
+  .industry-chip { font-size: 0.72rem; padding: 0.45rem 0.9rem; }
+  .rm-role { font-size: 0.95rem; }
+  .rm-achievements li { font-size: 0.85rem; }
 }
 </style>
 </head>
