@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 <title>Akansha Chauhan — Senior Technical Program Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -887,9 +888,6 @@ footer a:hover { color: var(--accent); }
   .projects-grid, .testimonial-track, .edu-grid { grid-template-columns: 1fr 1fr; }
   .about-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
   .newsletter-layout { grid-template-columns: 1fr; gap: 2rem; }
-  .hub-container { flex-direction: column; height: auto; gap: 1.5rem; padding: 1rem 0; }
-  .hub-left, .hub-right { width: 100%; }
-  .hub-center { margin: 0; }
 }
 @media (max-width: 768px) {
   html { scroll-padding-top: 70px; }
@@ -918,15 +916,17 @@ footer a:hover { color: var(--accent); }
   .about-photo { width: 180px; height: 180px; }
   .about-bio { font-size: 0.95rem; }
   .industries-row { justify-content: center; }
-  /* Roadmap mobile - single column, all cards on right */
-  .roadmap { padding-left: 0; }
-  .rm-node { grid-template-columns: 44px 1fr; gap: 1rem; margin-bottom: 2rem; }
-  .rm-left { display: none !important; }
-  .rm-right { visibility: visible !important; }
-  .rm-right .rm-card, .rm-left .rm-card { display: block !important; }
+  /* Roadmap mobile - all cards display, left & right both visible stacked on right side of line */
+  .rm-node { grid-template-columns: 44px 1fr !important; gap: 1rem; margin-bottom: 2rem; }
+  .rm-left { display: contents; }
+  .rm-left .rm-card { grid-column: 2; }
+  .rm-right { display: contents; }
+  .rm-right .rm-card { grid-column: 2; }
+  /* Hide empty placeholder cards on mobile */
+  .rm-card:empty { display: none; }
   .roadmap-line { left: 22px !important; right: auto !important; }
   .rm-card { max-width: 100%; padding: 1.25rem; }
-  .rm-dot-col { order: 1; }
+  .rm-dot-col { grid-column: 1; grid-row: 1; }
   /* Carousel */
   .carousel-wrapper { height: auto; min-height: 380px; padding: 1rem 0; }
   .testimonial-card { width: 85vw; max-width: 320px; padding: 1.5rem; }
@@ -941,10 +941,7 @@ footer a:hover { color: var(--accent); }
   .nl-form button { width: 100%; }
   /* Contact form */
   .contact-form { padding: 0; }
-  .form-group input, .form-group textarea { font-size: 16px; /* prevents iOS zoom */ }
-  /* Hub pills */
-  .hub-tool, .hub-skill { font-size: 0.72rem; padding: 0.35rem 0.75rem; }
-  .hub-outcome { width: 160px; min-width: 160px; padding: 0.85rem; }
+  .form-group input, .form-group textarea { font-size: 16px; }
   /* Mastery quote */
   .mastery-quote { padding: 2rem 1rem 1.5rem; }
   .mq-body { font-size: 1rem; line-height: 1.7; }
@@ -952,6 +949,9 @@ footer a:hover { color: var(--accent); }
   .mq-mark-open, .mq-mark-close { font-size: 3.5rem; }
   /* Footer */
   footer { padding: 1.5rem 1rem; font-size: 0.75rem; }
+  /* Prevent date formats from being auto-linked */
+  .rm-date { -webkit-user-select: text; user-select: text; pointer-events: none; }
+  .rm-date * { pointer-events: auto; }
 }
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: 1fr; }
@@ -961,7 +961,6 @@ footer a:hover { color: var(--accent); }
   .section-title { font-size: 1.5rem; }
   .nav-logo svg { width: 130px; height: 34px; }
   .about-photo { width: 150px; height: 150px; }
-  .tl-header { flex-direction: column; gap: 0.25rem; align-items: flex-start; }
   .testimonial-card { width: 90vw; padding: 1.25rem; }
   .tq-text { font-size: 0.85rem; }
   .industry-chip { font-size: 0.72rem; padding: 0.45rem 0.9rem; }
@@ -1104,7 +1103,7 @@ footer a:hover { color: var(--accent); }
           <div class="rm-right">
             <div class="rm-card">
               <div class="rm-badge"><span class="badge-dot"></span> Most Recent</div>
-              <div class="rm-date">04/2024 – 01/2026</div>
+              <div class="rm-date"><span>04/2024 – 01/2026</span></div>
               <div class="rm-role">Director of Solution Delivery</div>
               <div class="rm-company">linqd.</div>
               <ul class="rm-achievements">
@@ -1121,7 +1120,7 @@ footer a:hover { color: var(--accent); }
         <div class="rm-node">
           <div class="rm-left">
             <div class="rm-card">
-              <div class="rm-date">08/2013 – 04/2024</div>
+              <div class="rm-date"><span>08/2013 – 04/2024</span></div>
               <div class="rm-role">Technical Program Manager</div>
               <div class="rm-company">Vyts, Inc. | Client: USDA</div>
               <ul class="rm-achievements">
@@ -1148,7 +1147,7 @@ footer a:hover { color: var(--accent); }
           </div>
           <div class="rm-right">
             <div class="rm-card">
-              <div class="rm-date">11/2010 – 08/2013</div>
+              <div class="rm-date"><span>11/2010 – 08/2013</span></div>
               <div class="rm-role">Senior Systems Analyst / IBM Sterling OMS Consultant</div>
               <div class="rm-company">CMC Americas | Client: JC Penney</div>
               <ul class="rm-achievements">
@@ -1163,7 +1162,7 @@ footer a:hover { color: var(--accent); }
         <div class="rm-node">
           <div class="rm-left">
             <div class="rm-card">
-              <div class="rm-date">07/2008 – 11/2010</div>
+              <div class="rm-date"><span>07/2008 – 11/2010</span></div>
               <div class="rm-role">Technical Lead</div>
               <div class="rm-company">Prokarma | Client: Union Pacific Railroad</div>
               <ul class="rm-achievements">
@@ -1187,7 +1186,7 @@ footer a:hover { color: var(--accent); }
           </div>
           <div class="rm-right">
             <div class="rm-card">
-              <div class="rm-date">10/2006 – 07/2008</div>
+              <div class="rm-date"><span>10/2006 – 07/2008</span></div>
               <div class="rm-role">Associate / Yantra WMS Consultant</div>
               <div class="rm-company">Cognizant | Clients: Cabela's, United Healthcare</div>
               <ul class="rm-achievements">
