@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
-<title>Akansha Chauhan — Senior Technical Program Manager</title>
+<title>Akansha Chauhan — Director PMO / Technical Program Management</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
@@ -917,21 +917,27 @@ footer a:hover { color: var(--accent); }
   .about-photo { width: 180px; height: 180px; }
   .about-bio { font-size: 0.95rem; }
   .industries-row { justify-content: center; }
-  /* Roadmap mobile - flatten grid so all cards stack vertically on right of line */
+  /* Roadmap mobile - both left & right slots resolve to same column */
   .rm-node {
     display: grid !important;
     grid-template-columns: 44px 1fr !important;
-    grid-template-areas: "dot card" "dot card" !important;
     gap: 1rem !important;
     margin-bottom: 2rem;
+    align-items: start !important;
   }
-  .rm-dot-col { grid-area: dot; grid-row: 1 / span 2; }
-  .rm-left, .rm-right { grid-area: card; display: block !important; justify-content: flex-start !important; }
-  .rm-left .rm-card:empty, .rm-right .rm-card:empty { display: none; }
-  /* Ensure actual cards display */
-  .rm-left .rm-card:not(:empty), .rm-right .rm-card:not(:empty) { display: block !important; }
+  .rm-dot-col { grid-column: 1; grid-row: 1; }
+  /* Both left and right slots place themselves in column 2, stacked by source order */
+  .rm-left, .rm-right { 
+    grid-column: 2; 
+    display: block !important; 
+    justify-content: flex-start !important; 
+    min-height: 0 !important;
+  }
+  /* Hide placeholder containers whose card has no content */
+  .rm-left:has(.rm-card:empty), .rm-right:has(.rm-card:empty),
+  .rm-left.rm-empty, .rm-right.rm-empty { display: none !important; }
   .roadmap-line { left: 22px !important; right: auto !important; }
-  .rm-card { max-width: 100%; padding: 1.25rem; }
+  .rm-card { max-width: 100%; padding: 1.25rem; display: block !important; }
   /* Carousel */
   .carousel-wrapper { height: auto; min-height: 380px; padding: 1rem 0; }
   .testimonial-card { width: 85vw; max-width: 320px; padding: 1.5rem; }
@@ -1641,6 +1647,11 @@ footer a:hover { color: var(--accent); }
 
 <script>
 // ── Scroll Reveal
+// Mark empty roadmap placeholders so CSS can hide them (fallback for browsers without :has())
+document.querySelectorAll('.rm-left, .rm-right').forEach(el => {
+  const card = el.querySelector('.rm-card');
+  if (card && card.innerHTML.trim() === '') el.classList.add('rm-empty');
+});
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
