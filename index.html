@@ -398,11 +398,7 @@ section { padding: 6rem 2rem; }
   font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);
   letter-spacing: 0.05em; margin-bottom: 0.5rem;
 }
-/* Override iOS Safari auto-detected link styling for dates */
-.rm-date a, .rm-date span {
-  color: inherit !important; text-decoration: none !important;
-  pointer-events: none !important;
-}
+.rm-date span, .rm-date a { color: inherit !important; text-decoration: none !important; }
 .rm-role { font-weight: 700; font-size: 1.02rem; color: var(--text-primary); line-height: 1.35; margin-bottom: 0.3rem; }
 .rm-company { color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 0.75rem; }
 .rm-achievements { list-style: none; }
@@ -1109,7 +1105,7 @@ footer a:hover { color: var(--accent); }
           <div class="rm-right">
             <div class="rm-card">
               <div class="rm-badge"><span class="badge-dot"></span> Most Recent</div>
-              <div class="rm-date"><span>04/2024 – 01/2026</span></div>
+              <div class="rm-date" translate="no">04/2024 – 01/2026</div>
               <div class="rm-role">Director of Solution Delivery</div>
               <div class="rm-company">linqd.</div>
               <ul class="rm-achievements">
@@ -1126,7 +1122,7 @@ footer a:hover { color: var(--accent); }
         <div class="rm-node">
           <div class="rm-left">
             <div class="rm-card">
-              <div class="rm-date"><span>08/2013 – 04/2024</span></div>
+              <div class="rm-date" translate="no">08/2013 – 04/2024</div>
               <div class="rm-role">Technical Program Manager</div>
               <div class="rm-company">Vyts, Inc. | Client: USDA</div>
               <ul class="rm-achievements">
@@ -1153,7 +1149,7 @@ footer a:hover { color: var(--accent); }
           </div>
           <div class="rm-right">
             <div class="rm-card">
-              <div class="rm-date"><span>11/2010 – 08/2013</span></div>
+              <div class="rm-date" translate="no">11/2010 – 08/2013</div>
               <div class="rm-role">Senior Systems Analyst / IBM Sterling OMS Consultant</div>
               <div class="rm-company">CMC Americas | Client: JC Penney</div>
               <ul class="rm-achievements">
@@ -1168,7 +1164,7 @@ footer a:hover { color: var(--accent); }
         <div class="rm-node">
           <div class="rm-left">
             <div class="rm-card">
-              <div class="rm-date"><span>07/2008 – 11/2010</span></div>
+              <div class="rm-date" translate="no">07/2008 – 11/2010</div>
               <div class="rm-role">Technical Lead</div>
               <div class="rm-company">Prokarma | Client: Union Pacific Railroad</div>
               <ul class="rm-achievements">
@@ -1192,7 +1188,7 @@ footer a:hover { color: var(--accent); }
           </div>
           <div class="rm-right">
             <div class="rm-card">
-              <div class="rm-date"><span>10/2006 – 07/2008</span></div>
+              <div class="rm-date" translate="no">10/2006 – 07/2008</div>
               <div class="rm-role">Associate / Yantra WMS Consultant</div>
               <div class="rm-company">Cognizant | Clients: Cabela's, United Healthcare</div>
               <ul class="rm-achievements">
