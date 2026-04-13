@@ -916,17 +916,21 @@ footer a:hover { color: var(--accent); }
   .about-photo { width: 180px; height: 180px; }
   .about-bio { font-size: 0.95rem; }
   .industries-row { justify-content: center; }
-  /* Roadmap mobile - all cards display, left & right both visible stacked on right side of line */
-  .rm-node { grid-template-columns: 44px 1fr !important; gap: 1rem; margin-bottom: 2rem; }
-  .rm-left { display: contents; }
-  .rm-left .rm-card { grid-column: 2; }
-  .rm-right { display: contents; }
-  .rm-right .rm-card { grid-column: 2; }
-  /* Hide empty placeholder cards on mobile */
-  .rm-card:empty { display: none; }
+  /* Roadmap mobile - flatten grid so all cards stack vertically on right of line */
+  .rm-node {
+    display: grid !important;
+    grid-template-columns: 44px 1fr !important;
+    grid-template-areas: "dot card" "dot card" !important;
+    gap: 1rem !important;
+    margin-bottom: 2rem;
+  }
+  .rm-dot-col { grid-area: dot; grid-row: 1 / span 2; }
+  .rm-left, .rm-right { grid-area: card; display: block !important; justify-content: flex-start !important; }
+  .rm-left .rm-card:empty, .rm-right .rm-card:empty { display: none; }
+  /* Ensure actual cards display */
+  .rm-left .rm-card:not(:empty), .rm-right .rm-card:not(:empty) { display: block !important; }
   .roadmap-line { left: 22px !important; right: auto !important; }
   .rm-card { max-width: 100%; padding: 1.25rem; }
-  .rm-dot-col { grid-column: 1; grid-row: 1; }
   /* Carousel */
   .carousel-wrapper { height: auto; min-height: 380px; padding: 1rem 0; }
   .testimonial-card { width: 85vw; max-width: 320px; padding: 1.5rem; }
